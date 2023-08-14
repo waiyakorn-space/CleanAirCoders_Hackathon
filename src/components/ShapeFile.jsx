@@ -1,4 +1,4 @@
-import {useEffect} from "react"
+import React, {useEffect} from "react"
 import PropTypes from "prop-types"
 import {useLeaflet} from "react-leaflet"
 import L from "leaflet"
@@ -10,19 +10,13 @@ function ShapeFile({zipUrl}) {
   useEffect(() => {
     const geo = L.geoJson(
       {features: []},
-
       {
         onEachFeature: function popUp(feature, layer) {
-          var out = []
+          let out = []
           if (feature.properties) {
             console.log("feature.properties", feature.properties)
-            for (var key in feature.properties) {
-              if (
-                key === "dcode" ||
-                key === "dname_e" ||
-                key === "dname" ||
-                key === "count"
-              )
+            for (let key in feature.properties) {
+              if (key === "dcode" || key === "dname_e" || key === "count")
                 out.push(key + ": " + feature.properties[key])
             }
             layer.bindPopup(out.join("<br />"))
@@ -84,6 +78,30 @@ function ShapeFile({zipUrl}) {
       console.log({data})
       geo.addData(data)
     })
+
+    const categories = [
+      {color: "#FEF0D9", label: "<= 71"},
+      {color: "#FDCC8A", label: "<= 120"},
+      {color: "#FC8D59", label: "<= 177"},
+      {color: "#E34A33", label: "<= 265"},
+      {color: "#B30000", label: "<= 364"},
+    ]
+
+    let legend = L.control({position: "bottomleft"})
+    legend.onAdd = function (map) {
+      let div = L.DomUtil.create("div", "info legend")
+      let labels = ["<strong>Count</strong>"]
+      categories.map((cat) => {
+        labels.push(
+          `<i style=background:${cat.color} class="circle" ></i>` +
+            ` ${cat.label}`
+        )
+      })
+
+      div.innerHTML = labels.join("<br>")
+      return div
+    }
+    legend.addTo(map)
   }, [])
 
   return null

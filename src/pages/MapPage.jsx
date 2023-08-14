@@ -16,7 +16,7 @@ export default function MapPage() {
     <Map
       center={[13.75307285684537, 100.50098364542347]}
       zoom={13}
-      style={{height: "calc(100vh - 60px)"}}
+      style={{height: "calc(100vh - 60px)", zIndex: "0"}}
       ref={mapRef}
     >
       <TileLayer
