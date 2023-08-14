@@ -1,11 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Home from "./Home"
 import MapPage from "./pages/MapPage"
-
-import "./index.css"
 import "leaflet/dist/leaflet.css"
+import "./index.css"
 
 const router = createBrowserRouter([
   {

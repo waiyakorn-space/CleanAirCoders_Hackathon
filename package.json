@@ -5,6 +5,8 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@headlessui/react": "^1.7.16",
+    "@heroicons/react": "^2.0.18",
     "leaflet": "1.6.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",

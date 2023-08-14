@@ -1,8 +1,6 @@
 import React, {useEffect, useRef} from "react"
 import {Map, TileLayer} from "react-leaflet"
 
-import "leaflet/dist/leaflet.css"
-
 import zipUrl from "../shp_countreports.zip"
 import ShapeFile from "../components/ShapeFile"
 
