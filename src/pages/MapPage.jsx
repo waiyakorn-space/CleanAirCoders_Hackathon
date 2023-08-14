@@ -13,19 +13,17 @@ export default function MapPage() {
   }, [])
 
   return (
-    <div className="p-0">
-      <Map
-        center={[13.75307285684537, 100.50098364542347]}
-        zoom={13}
-        style={{height: "100vh"}}
-        ref={mapRef}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <ShapeFile zipUrl={zipUrl} />
-      </Map>
-    </div>
+    <Map
+      center={[13.75307285684537, 100.50098364542347]}
+      zoom={13}
+      style={{height: "calc(100vh - 60px)"}}
+      ref={mapRef}
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <ShapeFile zipUrl={zipUrl} />
+    </Map>
   )
 }

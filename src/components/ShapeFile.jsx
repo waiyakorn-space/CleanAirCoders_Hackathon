@@ -8,86 +8,11 @@ function ShapeFile({zipUrl}) {
   const {map} = useLeaflet()
 
   useEffect(() => {
-    // function polyStyle(feature) {
-    //   console.log("feature.properties.count", feature.properties.count)
-    //   switch (feature.properties.count) {
-    //     case feature.properties.count <= 71:
-    //       return {
-    //         fillColor: "#FEF0D9",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //     case feature.properties.count <= 120:
-    //       return {
-    //         fillColor: "#FDCC8A",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //     case feature.properties.count <= 177:
-    //       return {
-    //         fillColor: "#FC8D59",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //     case feature.properties.count <= 265:
-    //       return {
-    //         fillColor: "#E34A33",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //     case feature.properties.count <= 364:
-    //       return {
-    //         fillColor: "#B30000",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //     default:
-    //       return {
-    //         fillColor: "#FEF0D9",
-    //         weight: 2,
-    //         opacity: 1,
-    //         color: "white", //Outline color
-    //         fillOpacity: 0.7,
-    //       }
-    //   }
-    // }
-
     const geo = L.geoJson(
       {features: []},
 
-      // {
-      //   style: function (feature) {
-      //     console.log("feature.properties.count", feature.properties.count)
-      //     switch (feature.properties.count) {
-      //       case feature.properties.count <= 71:
-      //         return {color: "#FEF0D9"}
-      //       case feature.properties.count <= 120:
-      //         return {color: "#FDCC8A"}
-      //       case feature.properties.count <= 177:
-      //         return {color: "#FC8D59"}
-      //       case feature.properties.count <= 265:
-      //         return {color: "#E34A33"}
-      //       case feature.properties.count <= 364:
-      //         return {color: "#B30000"}
-      //       default:
-      //         return {color: "#FEF0D9"}
-      //     }
-      //   },
-      // },
       {
         onEachFeature: function popUp(feature, layer) {
-          // layer.bindTooltip(feature.properties.hood)
-
           var out = []
           if (feature.properties) {
             console.log("feature.properties", feature.properties)
