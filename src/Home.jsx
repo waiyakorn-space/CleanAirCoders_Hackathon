@@ -53,8 +53,9 @@ export default function Home() {
           </ul>
         </div>
       </div>
-
-      <Outlet />
+      <div className="overflow-y-scroll container">
+        <Outlet />
+      </div>
     </div>
   )
 }

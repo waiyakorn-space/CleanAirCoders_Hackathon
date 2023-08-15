@@ -14,7 +14,7 @@ function ShapeFile({zipUrl}) {
         onEachFeature: function popUp(feature, layer) {
           let out = []
           if (feature.properties) {
-            console.log("feature.properties", feature.properties)
+            // console.log("feature.properties", feature.properties)
             for (let key in feature.properties) {
               if (key === "dcode" || key === "dname_e" || key === "count")
                 out.push(key + ": " + feature.properties[key])
@@ -73,9 +73,9 @@ function ShapeFile({zipUrl}) {
         },
       }
     ).addTo(map)
-    console.log({zipUrl})
+    // console.log({zipUrl})
     shp(zipUrl).then(function (data) {
-      console.log({data})
+      // console.log({data})
       geo.addData(data)
     })
 
