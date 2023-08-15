@@ -1,16 +1,18 @@
-import React, {useEffect, useRef} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {Map, TileLayer} from "react-leaflet"
 import Select from "react-select"
-import {Column} from "@ant-design/plots"
+import {Column, Bar} from "@ant-design/plots"
 import {complainData} from "../data/complainData"
 
 import zipUrl from "../shp_countreports.zip"
 import ShapeFile from "../components/ShapeFile"
 import {options} from "../data/options"
+import {topWordData} from "../data/topWordData"
 
 export default function MapPage() {
   const mapRef = useRef()
-
+  const [checked, setChecked] = useState("1")
+  const [selected, setSelected] = useState("ภาพรวมกรุงเทพมหานคร")
   useEffect(() => {
     const map = mapRef.current.leafletElement
     map.setView([13.75307285684537, 100.50098364542347], 11)
@@ -35,22 +37,26 @@ export default function MapPage() {
       },
     },
   }
-  function convertData(data) {
-    const dataArray = []
-
-    for (const key in data[0]) {
-      if (data[0].hasOwnProperty(key)) {
-        const districtInfo = data[0][key]
-        dataArray.push({
-          // id: parseInt(key),
-          district: districtInfo.district,
-          count: districtInfo.count,
-        })
-      }
-    }
-
-    return dataArray
+  const configTopWord = {
+    data: topWordData[selected][checked],
+    xField: "count",
+    yField: "word",
+    xAxis: {
+      label: {autoHide: false, autoRotate: true},
+    },
+    scrollbar: {
+      type: "vertical",
+    },
+    meta: {
+      word: {
+        alias: "word",
+      },
+      count: {
+        alias: "จำนวนคำร้อง",
+      },
+    },
   }
+
   return (
     <>
       <Map
@@ -70,11 +76,39 @@ export default function MapPage() {
         <Column {...config} />
       </div>
       <div className="chart-container mt-30">
-        <h1 className="font-medium">คำสำคัญที่ถูกร้องเรียนเข้ามาบ่อย</h1>
-        <div className="my-30">
-          <Select options={options} />
+        <h1 className="font-medium mt-60">คำสำคัญที่ถูกร้องเรียนเข้ามาบ่อย</h1>
+        <div className="flex flex-row flex-wrap gap-10 items-center">
+          <div className="w-50">
+            <Select
+              options={options}
+              onChange={(value) => {
+                setSelected(value.value)
+              }}
+            />
+          </div>
+          <div className="flex flex-row gap-10">
+            <div>
+              <input
+                type="radio"
+                id="1"
+                onClick={() => setChecked("1")}
+                checked={checked === "1"}
+              />
+              <label htmlFor="1">1 คำ</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="2"
+                onClick={() => setChecked("2")}
+                checked={checked === "2"}
+              />
+              <label htmlFor="2">2 คำ</label>
+            </div>
+          </div>
         </div>
-        <Column {...config} />
+        <p>{selected}</p>
+        <Bar {...configTopWord} className="mt-30 pb-60" />
       </div>
     </>
   )

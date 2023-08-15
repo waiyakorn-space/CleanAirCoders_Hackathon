@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import {useEffect} from "react"
 import PropTypes from "prop-types"
 import {useLeaflet} from "react-leaflet"
 import L from "leaflet"
@@ -92,7 +92,7 @@ function ShapeFile({zipUrl}) {
       let div = L.DomUtil.create("div", "info legend")
       let labels = ["<strong>Count</strong>"]
       categories.map((cat) => {
-        labels.push(
+        return labels.push(
           `<i style=background:${cat.color} class="circle" ></i>` +
             ` ${cat.label}`
         )
@@ -102,7 +102,7 @@ function ShapeFile({zipUrl}) {
       return div
     }
     legend.addTo(map)
-  }, [])
+  }, [map, zipUrl])
 
   return null
 }
