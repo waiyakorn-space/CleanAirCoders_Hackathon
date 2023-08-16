@@ -15,7 +15,7 @@ export default function MapPage() {
   const [selected, setSelected] = useState("ภาพรวมกรุงเทพมหานคร")
   useEffect(() => {
     const map = mapRef.current.leafletElement
-    map.setView([13.75307285684537, 100.50098364542347], 11)
+    map.setView([13.75307285684537, 100.50098364542347], 10)
   }, [])
 
   const config = {
