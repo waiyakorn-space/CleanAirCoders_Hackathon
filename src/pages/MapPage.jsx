@@ -4,7 +4,6 @@ import Select from "react-select"
 import {Column, Bar} from "@ant-design/plots"
 import {complainData} from "../data/complainData"
 
-import zipUrl from "../shp_countreports.zip"
 import ShapeFile from "../components/ShapeFile"
 import {options} from "../data/options"
 import {topWordData} from "../data/topWordData"
@@ -37,6 +36,7 @@ export default function MapPage() {
       },
     },
   }
+
   const configTopWord = {
     data: topWordData[selected][checked],
     xField: "count",
@@ -69,7 +69,7 @@ export default function MapPage() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <ShapeFile zipUrl={zipUrl} />
+        <ShapeFile />
       </Map>
       <div className="chart-container">
         <h1 className="font-medium">จำนวนคำร้องในแต่ละเขต</h1>
@@ -87,20 +87,20 @@ export default function MapPage() {
             />
           </div>
           <div className="flex flex-row gap-10">
-            <div>
+            <div className="flex gap-x-2">
               <input
                 type="radio"
                 id="1"
-                onClick={() => setChecked("1")}
+                onChange={() => setChecked("1")}
                 checked={checked === "1"}
               />
               <label htmlFor="1">1 คำ</label>
             </div>
-            <div>
+            <div className="flex gap-x-2">
               <input
                 type="radio"
                 id="2"
-                onClick={() => setChecked("2")}
+                onChange={() => setChecked("2")}
                 checked={checked === "2"}
               />
               <label htmlFor="2">2 คำ</label>

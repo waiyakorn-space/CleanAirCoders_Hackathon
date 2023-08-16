@@ -10,13 +10,13 @@ export default function Home() {
           to="/"
           className={({isActive}) => `${isActive && "text-active"}`}
         >
-          Home
+          หน้าหลัก
         </NavLink>
         <NavLink
           to="/map"
           className={({isActive}) => `${isActive && "text-active"}`}
         >
-          Map Page
+          แผนที่ปัญหาฝุ่นรายเขต
         </NavLink>
         <NavLink
           to="/model"
@@ -36,19 +36,19 @@ export default function Home() {
               to="/"
               className={({isActive}) => `${isActive && "text-active"}`}
             >
-              <li>Home</li>
+              <li>หน้าหลัก</li>
             </NavLink>
             <NavLink
               to="/map"
               className={({isActive}) => `${isActive && "text-active"}`}
             >
-              <li>Map Page</li>
+              <li>แผนที่ปัญหาฝุ่นรายเขต</li>
             </NavLink>
             <NavLink
               to="/model"
               className={({isActive}) => `${isActive && "text-active"}`}
             >
-              <li>Models</li>
+              <li>โมเดลความสัมพันธ์ฝุ่น</li>
             </NavLink>
           </ul>
         </div>

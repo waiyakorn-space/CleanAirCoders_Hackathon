@@ -1,10 +1,11 @@
 import {useEffect} from "react"
-import PropTypes from "prop-types"
 import {useLeaflet} from "react-leaflet"
 import L from "leaflet"
 import shp from "shpjs"
 
-function ShapeFile({zipUrl}) {
+import zipUrl from "../shp_countreports.zip"
+import zipUrl2 from "../shp_heat.zip"
+function ShapeFile() {
   const {map} = useLeaflet()
 
   useEffect(() => {
@@ -73,10 +74,49 @@ function ShapeFile({zipUrl}) {
         },
       }
     ).addTo(map)
+
     // console.log({zipUrl})
     shp(zipUrl).then(function (data) {
       // console.log({data})
       geo.addData(data)
+    })
+
+    map.createPane("pane250").style.zIndex = 250
+    map.createPane("pane0").style.zIndex = 0
+
+    const geojsonMarkerOptions = {
+      radius: 7,
+      fillColor: "yellow",
+      color: "#c8c7c7",
+      weight: 1,
+      opacity: 0.5,
+      fillOpacity: 0.8,
+      pane: "pane250",
+    }
+    const geo2 = L.geoJson(
+      {features: []},
+      {
+        pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, geojsonMarkerOptions)
+        },
+        onEachFeature: function (feature, layer) {
+          if (feature.properties.brightness) {
+            layer.bindPopup(
+              `<p>brightness: ${feature.properties.brightness}</p>`
+            )
+          } else {
+            layer.setStyle({pane: "pane0", fillOpacity: 0})
+          }
+        },
+        // style: function (feature) {
+        //   console.log({feature})
+        //   return {}
+        // },
+      }
+    ).addTo(map)
+    shp(zipUrl2).then(function (data) {
+      console.log({data})
+      geo2.addData(data)
     })
 
     const categories = [
@@ -102,13 +142,19 @@ function ShapeFile({zipUrl}) {
       return div
     }
     legend.addTo(map)
+
+    let layerControl = {
+      จำนวนคำร้องตามเขต: geo,
+      จุดความร้อน: geo2,
+    }
+    L.control.layers(null, layerControl).addTo(map)
   }, [map, zipUrl])
 
   return null
 }
 
-ShapeFile.propTypes = {
-  zipUrl: PropTypes.string.isRequired,
-}
+// ShapeFile.propTypes = {
+//   zipUrl: PropTypes.string.isRequired,
+// }
 
 export default ShapeFile
