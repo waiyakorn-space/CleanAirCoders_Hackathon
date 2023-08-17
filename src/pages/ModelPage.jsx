@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Fragment} from "react"
 import {Bar} from "@ant-design/plots"
 import {factorData} from "../data/factorData"
 
@@ -34,16 +34,22 @@ export default function ModelPage() {
           </div>
           <div className="h-table">
             <table id="customers">
-              <th className="table-bordered">ปัจจัย</th>
-              <th className="table-bordered">ค่านัยสำคัญ</th>
-              {factorData.map((item, index) => (
-                <>
-                  <tr key={index}>
-                    <td className="table-bordered">{item.factor}</td>
-                    <td className="table-bordered">{item.significance}</td>
-                  </tr>
-                </>
-              ))}
+              <thead>
+                <tr>
+                  <th className="table-bordered">ปัจจัย</th>
+                  <th className="table-bordered">ค่านัยสำคัญ</th>
+                </tr>
+              </thead>
+              <tbody>
+                {factorData.map((item, index) => (
+                  <Fragment key={index}>
+                    <tr>
+                      <td className="table-bordered">{item.factor}</td>
+                      <td className="table-bordered">{item.significance}</td>
+                    </tr>
+                  </Fragment>
+                ))}
+              </tbody>
             </table>
           </div>
         </div>

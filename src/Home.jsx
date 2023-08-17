@@ -19,6 +19,12 @@ export default function Home() {
           แผนที่ปัญหาฝุ่นรายเขต
         </NavLink>
         <NavLink
+          to="/landUsed"
+          className={({isActive}) => `${isActive && "text-active"}`}
+        >
+          วิเคราะห์การใช้ที่ดิน
+        </NavLink>
+        <NavLink
           to="/model"
           className={({isActive}) => `${isActive && "text-active"}`}
         >
@@ -43,6 +49,12 @@ export default function Home() {
               className={({isActive}) => `${isActive && "text-active"}`}
             >
               <li>แผนที่ปัญหาฝุ่นรายเขต</li>
+            </NavLink>
+            <NavLink
+              to="/landUsed"
+              className={({isActive}) => `${isActive && "text-active"}`}
+            >
+              <li> วิเคราะห์การใช้ที่ดิน</li>
             </NavLink>
             <NavLink
               to="/model"

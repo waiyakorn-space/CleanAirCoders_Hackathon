@@ -23,6 +23,32 @@ nav {
   display: none;
 }
 
+.cover-mobile {
+  display: none;
+}
+
+.cover-desktop {
+  width: 100%;
+}
+
+.object-fit-cover {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 1280px) {
+  nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    width: 100vw;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  }
+}
+
 @media (max-width: 1024px) {
   .model-container {
     padding-top: 30px;
@@ -32,6 +58,15 @@ nav {
 }
 
 @media (max-width: 768px) {
+  .cover-mobile {
+    display: block;
+    width: 100%;
+  }
+
+  .cover-desktop {
+    display: none;
+  }
+
   .text-header {
     font-size: 20px !important;
   }
@@ -48,13 +83,16 @@ nav {
   .mt-60 {
     margin-top: 60px;
   }
+
   .mb-60 {
     margin-bottom: 60px;
   }
+
   .px-60 {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+
   .pb-60 {
     padding-bottom: 60px !important;
   }
@@ -65,16 +103,6 @@ nav {
 
   .gap-10 {
     gap: 20px !important;
-  }
-
-  nav {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-    width: 100vw;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
   }
 
   .h-table {
@@ -425,4 +453,12 @@ a:hover {
   color: white;
   position: sticky;
   top: 0;
+}
+
+.countryLabel {
+  font-family: "Kanit";
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0px !important;
+  box-shadow: 0 0px 0px !important;
 }

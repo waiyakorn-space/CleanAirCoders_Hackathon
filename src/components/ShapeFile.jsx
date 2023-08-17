@@ -5,9 +5,14 @@ import shp from "shpjs"
 
 import zipUrl from "../shp_countreports.zip"
 import zipUrl2 from "../shp_heat.zip"
+import zipUrl3 from "../shpaoi.zip"
+
 function ShapeFile() {
   const {map} = useLeaflet()
-
+  map.createPane("pane300").style.zIndex = 300
+  map.createPane("pane250").style.zIndex = 250
+  map.createPane("pane200").style.zIndex = 200
+  map.createPane("pane0").style.zIndex = 0
   useEffect(() => {
     const geo = L.geoJson(
       {features: []},
@@ -28,6 +33,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             } else if (feature.properties.count <= 120) {
               layer.setStyle({
@@ -36,6 +42,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             } else if (feature.properties.count <= 177) {
               layer.setStyle({
@@ -44,6 +51,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             } else if (feature.properties.count <= 265) {
               layer.setStyle({
@@ -52,6 +60,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             } else if (feature.properties.count <= 364) {
               layer.setStyle({
@@ -60,6 +69,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             } else {
               layer.setStyle({
@@ -68,6 +78,7 @@ function ShapeFile() {
                 opacity: 1,
                 color: "white",
                 fillOpacity: 0.8,
+                pane: "pane250",
               })
             }
           }
@@ -75,14 +86,10 @@ function ShapeFile() {
       }
     ).addTo(map)
 
-    // console.log({zipUrl})
     shp(zipUrl).then(function (data) {
       // console.log({data})
       geo.addData(data)
     })
-
-    map.createPane("pane250").style.zIndex = 250
-    map.createPane("pane0").style.zIndex = 0
 
     const geojsonMarkerOptions = {
       radius: 7,
@@ -91,8 +98,9 @@ function ShapeFile() {
       weight: 1,
       opacity: 0.5,
       fillOpacity: 0.8,
-      pane: "pane250",
+      pane: "pane300",
     }
+
     const geo2 = L.geoJson(
       {features: []},
       {
@@ -115,8 +123,33 @@ function ShapeFile() {
       }
     ).addTo(map)
     shp(zipUrl2).then(function (data) {
-      console.log({data})
+      // console.log({data})
       geo2.addData(data)
+    })
+
+    const geo3 = L.geoJson(
+      {features: []},
+      {
+        style: {
+          fillColor: "#9DE7FF",
+          fillOpacity: 0.8,
+          color: "#fff",
+          opacity: 1,
+          weight: 1,
+          pane: "pane200",
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindTooltip(feature.properties.PROVINCE_T, {
+            permanent: true,
+            direction: "center",
+            className: "countryLabel",
+          })
+        },
+      }
+    ).addTo(map)
+
+    shp(zipUrl3).then(function (data) {
+      geo3.addData(data)
     })
 
     const categories = [
@@ -130,7 +163,7 @@ function ShapeFile() {
     let legend = L.control({position: "bottomleft"})
     legend.onAdd = function (map) {
       let div = L.DomUtil.create("div", "info legend")
-      let labels = ["<strong>Count</strong>"]
+      let labels = ["<strong>จำนวนคำร้อง</strong>"]
       categories.map((cat) => {
         return labels.push(
           `<i style=background:${cat.color} class="circle" ></i>` +
@@ -146,9 +179,10 @@ function ShapeFile() {
     let layerControl = {
       จำนวนคำร้องตามเขต: geo,
       จุดความร้อน: geo2,
+      จังหวัดปริมณฑล: geo3,
     }
     L.control.layers(null, layerControl).addTo(map)
-  }, [map, zipUrl])
+  }, [map])
 
   return null
 }

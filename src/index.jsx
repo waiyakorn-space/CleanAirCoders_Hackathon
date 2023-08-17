@@ -7,6 +7,7 @@ import "leaflet/dist/leaflet.css"
 import "./index.css"
 import AboutPage from "./pages/AboutPage"
 import ModelPage from "./pages/ModelPage"
+import LandUsedPage from "./pages/LandUsedPage"
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/map",
         element: <MapPage />,
+      },
+      {
+        path: "/landUsed",
+        element: <LandUsedPage />,
       },
       {
         path: "/model",
