@@ -23,14 +23,38 @@ nav {
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .model-container {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+}
+
 @media (max-width: 768px) {
+  .text-header {
+    font-size: 20px !important;
+  }
+
   .text-show {
     font-size: 24px !important;
   }
+
+  .text-base {
+    font-size: 16px !important;
+    line-height: 30px !important;
+  }
+
   .mt-60 {
     margin-top: 60px;
   }
-
+  .mb-60 {
+    margin-bottom: 60px;
+  }
+  .px-60 {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
   .pb-60 {
     padding-bottom: 60px !important;
   }
@@ -40,7 +64,7 @@ nav {
   }
 
   .gap-10 {
-    gap: 10px !important;
+    gap: 20px !important;
   }
 
   nav {
@@ -52,16 +76,65 @@ nav {
     width: 100vw;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
   }
+
+  .h-table {
+    margin: 0px 20px !important;
+  }
+}
+
+.text-header {
+  font-size: 36px;
 }
 
 .text-show {
   font-size: 36px;
+}
+.text-base {
+  font-size: 20px;
+  line-height: 40px;
 }
 
 .chart-container {
   padding: 30px;
   row-gap: 30px;
   height: calc(50vh - 30px);
+}
+
+.bg-red {
+  background-color: rgba(241, 109, 109, 0.376);
+}
+
+.bg-green {
+  background-color: rgba(80, 218, 80, 0.756);
+}
+.h-full {
+  height: 100%;
+}
+
+.h-chart-model {
+  height: calc(50vh - 80px);
+}
+.h-table {
+  /* display: inline-block; */
+  max-height: 35vh;
+  margin: 0px 60px;
+  overflow-y: scroll;
+}
+
+.model-container {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.py-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.px-60 {
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .pb-60 {
@@ -81,6 +154,9 @@ nav {
 
 .flex {
   display: flex;
+}
+.block {
+  display: block;
 }
 
 .justify-center {
@@ -108,6 +184,9 @@ nav {
 
 .gap-10 {
   gap: 40px;
+}
+.gap-5 {
+  gap: 20px;
 }
 
 .my-30 {
@@ -315,4 +394,35 @@ a:hover {
   */
 #menuToggle input:checked ~ ul {
   transform: none;
+}
+
+#customers {
+  border-collapse: collapse;
+  width: 100%;
+  overflow-y: scroll;
+  height: 60px;
+}
+
+#customers td,
+#customers th {
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+}
+
+#customers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+  background-color: #ddd;
+}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #324960;
+  color: white;
+  position: sticky;
+  top: 0;
 }

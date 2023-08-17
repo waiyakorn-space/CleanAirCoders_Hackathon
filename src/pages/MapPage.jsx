@@ -72,11 +72,13 @@ export default function MapPage() {
         <ShapeFile />
       </Map>
       <div className="chart-container">
-        <h1 className="font-medium">จำนวนคำร้องในแต่ละเขต</h1>
+        <h1 className="font-medium text-header">จำนวนคำร้องในแต่ละเขต</h1>
         <Column {...config} />
       </div>
       <div className="chart-container mt-30">
-        <h1 className="font-medium mt-60">คำสำคัญที่ถูกร้องเรียนเข้ามาบ่อย</h1>
+        <h1 className="font-medium text-header mt-60">
+          คำสำคัญที่ถูกร้องเรียนเข้ามาบ่อย
+        </h1>
         <div className="flex flex-row flex-wrap gap-10 items-center">
           <div className="w-50">
             <Select

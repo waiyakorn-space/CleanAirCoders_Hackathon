@@ -22,7 +22,7 @@ export default function Home() {
           to="/model"
           className={({isActive}) => `${isActive && "text-active"}`}
         >
-          Models
+          โมเดลความสัมพันธ์ฝุ่น
         </NavLink>
       </nav>
       <div className="hamburger">
