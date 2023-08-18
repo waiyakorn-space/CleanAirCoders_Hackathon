@@ -45,7 +45,6 @@ nav {
   .hamburger {
     display: flex;
     width: 100vw;
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
   }
 }
 
@@ -85,7 +84,7 @@ nav {
   }
 
   .mb-60 {
-    margin-bottom: 60px !important;
+    margin-bottom: 100px !important;
   }
 
   .px-60 {
@@ -260,6 +259,7 @@ a:hover {
 }
 
 .info {
+  font-family: "Kanit";
   padding: 10px;
   font: 16px;
   background: white;
@@ -274,6 +274,7 @@ a:hover {
 }
 
 .legend i {
+  margin-top: 2px;
   width: 15px;
   height: 15px;
   float: left;
@@ -291,6 +292,8 @@ a:hover {
 }
 
 #menuToggle {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  width: 100%;
   height: 60px;
   display: flex;
   position: relative;
@@ -307,7 +310,6 @@ a:hover {
 #menuToggle a {
   text-decoration: none;
   color: #232323;
-
   transition: color 0.3s ease;
 }
 
@@ -373,7 +375,7 @@ a:hover {
   width: 100vw;
   margin: 60px 0 0 -30px;
   padding-left: 30px;
-  padding-top: 160px;
+  padding-top: 200px;
 
   background: #ededed;
   list-style-type: none;
