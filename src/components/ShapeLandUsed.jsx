@@ -437,7 +437,7 @@ function ShapeLandUsed() {
 
     let legend = L.control({position: "bottomleft"})
     legend.onAdd = function (map) {
-      let div = L.DomUtil.create("div", "info legend")
+      let div = L.DomUtil.create("div", "info legend mb-60")
       let labels = ["<strong>ประเภท</strong>"]
       categories.map((cat) => {
         return labels.push(
