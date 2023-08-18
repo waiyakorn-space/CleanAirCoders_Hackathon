@@ -460,6 +460,12 @@ function ShapeLandUsed() {
       2017: geo2017,
     }
     L.control.layers(layerControl).addTo(map)
+    map.removeLayer(geo2017)
+    map.removeLayer(geo2018)
+    map.removeLayer(geo2019)
+    map.removeLayer(geo2020)
+    map.removeLayer(geo2021)
+    map.addLayer(geo2022)
   }, [map])
 
   return null
